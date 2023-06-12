@@ -5,7 +5,8 @@ namespace Module2HW6
 {
     public class TaxiDepot
     {
-        private List<Car> _cars = new List<Car>();
+        private Car[] _cars = new Car[1];
+        private int _count = 0;
 
         public TaxiDepot()
         {
@@ -15,15 +16,24 @@ namespace Module2HW6
             IGasCar gasCarHatch = new GasHatch();
             IGasCar gasCarSedan = new GasSedan();
             IGasCar gasCarSuv = new GasSuv();
-            _cars.Add((Car)electricCarHatch.GetFord());
-            _cars.Add((Car)gasCarHatch.GetHyundai());
-            _cars.Add((Car)electricCarSuv.GetTesla());
-            _cars.Add((Car)gasCarSedan.GetFord());
-            _cars.Add((Car)electricCarSedan.GetHyundai());
-            _cars.Add((Car)gasCarSuv.GetNissan());
+            AddCar((Car)electricCarHatch.GetFord());
+            AddCar((Car)gasCarHatch.GetHyundai());
+            AddCar((Car)electricCarSuv.GetTesla());
+            AddCar((Car)gasCarSedan.GetFord());
+            AddCar((Car)electricCarSedan.GetHyundai());
+            AddCar((Car)gasCarSuv.GetNissan());
         }
 
-        public List<Car> GetCars() => _cars;
-        public void AddCar(Car car) => _cars.Add(car);
+        public Car[] GetCars() => _cars;
+        public void AddCar(Car car)
+        {
+            if (_count <= _cars.Length)
+            {
+                Array.Resize(ref _cars, _count + 1);
+            }
+
+            _cars[_count] = car;
+            _count++;
+        }
     }
 }

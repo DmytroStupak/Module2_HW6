@@ -4,21 +4,24 @@ namespace HW6.Helpers
 {
     public static class StaticCars
     {
-        public static List<Car> FindByWeight(this List<Car> cars, double minWeight, double maxWeight)
+        public static Car[] FindByWeight(this Car[] cars, double minWeight, double maxWeight)
         {
-            List<Car> list = new List<Car>();
+            Car[] res = new Car[100];
+            int count = 0;
             foreach (Car car in cars)
             {
                 if (car.Cost >= minWeight && car.Cost <= maxWeight)
                 {
-                    list.Add(car);
+                    res[count] = car;
+                    count++;
                 }
             }
 
-            return list;
+            Array.Resize(ref res, count);
+            return res;
         }
 
-        public static void PrintList(this List<Car> cars)
+        public static void PrintList(this Car[] cars)
         {
             double res = 0;
             Console.WriteLine("########################################################");
