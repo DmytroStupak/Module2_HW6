@@ -1,7 +1,15 @@
-﻿internal class Program
+﻿using System;
+using HW6;
+using HW6.Helpers;
+using HW6.Interfaces;
+
+namespace Module2HW6
 {
-    private static void Main(string[] args)
+    public class Program
     {
-        Console.WriteLine("Hello, World!");
+        public static void Main(string[] args)
+        {
+            Starter.Run();
+        }
     }
 }
